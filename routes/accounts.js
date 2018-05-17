@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-cost accountsConstroller = require('../controllers/accounts');
+const accountsConstroller = require('../controllers/accounts');
 
 router.get('/accounts', accountsConstroller.index);
 router.get('/accounts/:id', accountsConstroller.show);

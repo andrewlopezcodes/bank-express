@@ -1,14 +1,12 @@
-const accountModel = require('../models/account');
+
 
 const accountModel = require('../models/account');
 const index = (request, response)=> {
-  const accounts = accountModel.index():
+  const accounts = accountModel.index();
+  response.send(accounts);
 }
 
 
-
-
-const index = (request, response)=>{}
 
 const show = (request, response)=>{}
 
@@ -20,7 +18,7 @@ const destroy = (request, response)=>{}
 
 
 
-modules.exports = {
+module.exports = {
   index,
   show,
   create,
