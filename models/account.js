@@ -9,7 +9,10 @@ const index = () => {
 }
 
 const show = (id) => {
-  const accounts
+  const accountsJSON = fs.readFileSync(accountsPath, 'utf-8');
+  const accounts = JSON.parse(accountsJSON);
+  const foundAccount = accounts.find(account => account.id === id);
+  return foundAccount;
 }
 const create = () => {}
 const update = () => {}

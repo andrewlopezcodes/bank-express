@@ -8,4 +8,5 @@ router.post('/accounts', accountsConstroller.create);
 router.put('/accounts/:id', accountsConstroller.update);
 router.delete('/accounts/:id', accountsConstroller.destroy);
 
+
 module.exports = router;

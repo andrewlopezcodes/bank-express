@@ -8,7 +8,10 @@ const index = (request, response)=> {
 
 
 
-const show = (request, response)=>{}
+const show = (request, response)=>{
+  const account = accountModel.show(request.params.id);
+  response.send(account);
+}
 
 const create = (request, response)=>{}
 
