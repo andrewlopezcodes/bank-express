@@ -26,28 +26,46 @@ const create = ({accountHolder, bankName, description}) => {
     description: description
   };
   accounts.push(newUser);
-  const addAccountJSON = JSON.stringify(accounts);
-  fs.writeFileSync(accountsPath, addAccountJSON);
+  accountsJSONstring = JSON.stringify(accounts);
+  fs.writeFileSync(accountsPath, addAccountJSONstring);
   return newUser;
 }
 
-const update = (id, upDatedAccount) => {
-  let updateAccount;
+const update = (id, {bankName, accountHolder, description}) => {
   const accountsJSON = fs.readFileSync(accountsPath, 'utf-8');
   const accounts = JSON.parse(accountsJSON);
+  let newUpdatedAccount;
   const updateAccounts = accounts.map(account =>{
     if (id ===account.id){
-      updateAccount = {...account, ...upDatedAccount}
-      return updateAccount;
+      newUpdatedAccount = {
+        id,
+        bankName: bankName || account.bankName,
+        accountHolder: accountHolder || account.accountHolder,
+        description: description || account.description
+      };
+      return newUpdateAccount;
     } else {
       return account;
     }
-  });
-  fs.writeFileSync(accountsPath, JSON.stringify(updatedAccount));
-  return updatedAccount;
+  })
+  accountsJSONstring = JSON.stringify(accounts);
+  fs.writeFileSync(accountsPath, accountsJSONstring);
+  return newUpdatedAccount;
 }
 
-const destroy = () => {}
+const destroy = (id) => {
+  let matchedID;
+  const accountsJSON = fs.readFileSync(accountsPath, 'utf-8');
+  const accounts = JSON.parse(accountsJSON);
+  const newArrayAccounts = accounts.filter(account =>{
+    if (account.id === id) {
+      matchedID = account;
+      retrun false;
+    } else {
+      return true;
+    }
+  });
+}
 
 module.exports = {
 index,

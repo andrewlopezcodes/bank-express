@@ -24,7 +24,10 @@ const update = (request, response)=>{
   response.send(updateAccount);
 }
 
-const destroy = (request, response) => {}
+const destroy = (request, response) => {
+  const account = accountModel.update(request.params.id, request.body);
+  response.send(account);
+}
 
 module.exports = {
   index,
