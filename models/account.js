@@ -27,11 +27,12 @@ const create = ({accountHolder, bankName, description}) => {
   };
   accounts.push(newUser);
   accountsJSONstring = JSON.stringify(accounts);
-  fs.writeFileSync(accountsPath, addAccountJSONstring);
+  fs.writeFileSync(accountsPath, accountsJSONstring);
   return newUser;
 }
 
 const update = (id, {bankName, accountHolder, description}) => {
+// const update = ( id, data ) => {
   const accountsJSON = fs.readFileSync(accountsPath, 'utf-8');
   const accounts = JSON.parse(accountsJSON);
   let newUpdatedAccount;
@@ -43,12 +44,13 @@ const update = (id, {bankName, accountHolder, description}) => {
         accountHolder: accountHolder || account.accountHolder,
         description: description || account.description
       };
-      return newUpdateAccount;
+      // newUpdatedAccount = { ...account, ...data }
+      return newUpdatedAccount;
     } else {
       return account;
     }
   })
-  accountsJSONstring = JSON.stringify(accounts);
+  accountsJSONstring = JSON.stringify(updateAccounts);
   fs.writeFileSync(accountsPath, accountsJSONstring);
   return newUpdatedAccount;
 }
@@ -60,11 +62,14 @@ const destroy = (id) => {
   const newArrayAccounts = accounts.filter(account =>{
     if (account.id === id) {
       matchedID = account;
-      retrun false;
+      return false;
     } else {
       return true;
     }
   });
+  newArrayAccountsJSON = JSON.stringify(newArrayAccounts);
+  fs.writeFileSync(accountsPath, newArrayAccountsJSON);
+  return matchedID;
 }
 
 module.exports = {

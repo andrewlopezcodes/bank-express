@@ -4,6 +4,9 @@ const morgan = require('morgan')
 const PORT = process.env.PORT || 3010;
 const accountRoutes = require('./routes/accounts');
 const transactionRoutes = require('./routes/transactions');
+const cors = require('cors');
+
+app.use(cors());
 
 
 app.use(morgan('dev'));
